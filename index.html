@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Home</title>
+    <title>Stop Loss & Target Calculator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -48,6 +48,7 @@
                     </strong></div>
             </div>
             <div class="col-md-2" style="padding-top: 25pt">
+                <button type="button" id="calculate-button" class="btn btn-success">Calculate</button>
                 <button type="button" id="reset-button" class="btn btn-danger">Reset</button>
             </div>
         </div>
@@ -74,9 +75,9 @@
 
     $("#target-input").change(function () {
         let price = $('#price-input').val();
-        let stopLoss = $('#target-input').val();
-        let netStopLoss = calculateStopLoss(price, stopLoss);
-        $('#target-value').text(`${netStopLoss}%`);
+        let target = $('#target-input').val();
+        let netTarget = calculateTarget(price, target);
+        $('#target-value').text(`${netTarget}%`);
     });
 
     $("#reset-button").click(function () {
@@ -87,6 +88,16 @@
         $('#target-value').text(`0%`);
     });
 
+    $("#calculate-button").click(function () {
+        let price = $('#price-input').val();
+        let stopLoss = $('#stop-loss-input').val();
+        let netStopLoss = calculateStopLoss(price, stopLoss);
+        $('#stop-loss-value').text(`${netStopLoss}%`);
+
+        let target = $('#target-input').val();
+        let netTarget = calculateTarget(price, target);
+        $('#target-value').text(`${netTarget}%`);
+    });
 </script>
 
 </html>
